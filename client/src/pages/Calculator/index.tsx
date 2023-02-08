@@ -64,7 +64,7 @@ export function Calculator() {
                 setResult(equation.replace(/\./g, ''))
                 setIsEqualsCalculated((value) => !value)
             } else {
-                const regExp = new RegExp(/[^\d,]/g);
+                const regExp = new RegExp(/[^\d,]$/);
                 if (regExp.test(result)) {
                     const number = Number(result.replace(',', '.').substring(0, result.length - 1));
                     const operator = result.slice(result.length - 1);
@@ -84,6 +84,7 @@ export function Calculator() {
                         handleEquationChange((number / equationNumber).toLocaleString('pt-BR'))
                     }
                 } else {
+                    console.log('entrei');
                     setResult(equation.replace(/\./g, ''))
                 }
                 setIsEqualsCalculated(true);
