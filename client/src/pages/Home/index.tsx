@@ -1,9 +1,10 @@
 import { HomeContainer } from "./styles";
+import { Link } from 'react-router-dom';
 
 export function Home() {
     return (
         <HomeContainer>
-            x
+            <Link to={'./calculator'}>Calculadora</Link>
         </HomeContainer>
     )
 }
