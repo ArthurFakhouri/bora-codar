@@ -14,7 +14,7 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-<a target="_blank" href="bora-codar-five.vercel.app">Demo</a>
+<a target="_blank" href="https://bora-codar-five.vercel.app">Demo</a>
 
 ## 🈸 Projeto
 
