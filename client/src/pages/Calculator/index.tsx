@@ -71,20 +71,19 @@ export function Calculator() {
                     const equationNumber = Number(equation.replace(/\./g, '').replace(',', '.'));
 
                     if (operator === '+') {
-                        setResult(number + "+" + equationNumber.toLocaleString('pt-BR'));
+                        setResult(number.toLocaleString('pt-BR') + "+" + equationNumber.toLocaleString('pt-BR'));
                         handleEquationChange((number + equationNumber).toLocaleString('pt-BR'))
                     } else if (operator === '-') {
-                        setResult(number + "-" + equationNumber.toLocaleString('pt-BR'));
+                        setResult(number.toLocaleString('pt-BR') + "-" + equationNumber.toLocaleString('pt-BR'));
                         handleEquationChange((number - equationNumber).toLocaleString('pt-BR'))
                     } else if (operator === '×') {
-                        setResult(number + "×" + equationNumber.toLocaleString('pt-BR'));
+                        setResult(number.toLocaleString('pt-BR') + "×" + equationNumber.toLocaleString('pt-BR'));
                         handleEquationChange((number * equationNumber).toLocaleString('pt-BR'))
                     } else {
-                        setResult(number + "÷" + equationNumber.toLocaleString('pt-BR'));
+                        setResult(number.toLocaleString('pt-BR') + "÷" + equationNumber.toLocaleString('pt-BR'));
                         handleEquationChange((number / equationNumber).toLocaleString('pt-BR'))
                     }
                 } else {
-                    console.log('entrei');
                     setResult(equation.replace(/\./g, ''))
                 }
                 setIsEqualsCalculated(true);
