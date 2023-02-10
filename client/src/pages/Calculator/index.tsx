@@ -1,9 +1,19 @@
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, CalculatorButtons, CalculatorContainer, CalculatorHeader, CalculatorPage, InputBox } from "./styles";
 import { buttons } from "../../services/calculator";
 import equalsResult from '../../assets/SecondaryEquals.png'
 
-type Operation = "Divider" | "Plus" | "Minus" | "X" | "Percent" | "C" | "CE" | "Equals"
+enum Operation { 
+    Divider = "Divider",
+    Plus = "Plus",
+    Minus = "Minus",
+    Times = "Times",
+    Percent = "Percent",
+    Clear = "Clear",
+    ClearEntry = "ClearEntry",
+    Equals = "Equals",
+    FlagSign = "FlagSign",
+}
 
 export function Calculator() {
 
@@ -12,6 +22,7 @@ export function Calculator() {
     const buttonsRef = useRef<HTMLButtonElement[]>([]);
     const [result, setResult] = useState("");
     const [equation, setEquation] = useState("0");
+
     const operations = {
         Divider() {
             setResult((value) => !value || isEqualsCalculated ?
@@ -31,7 +42,7 @@ export function Calculator() {
                 : value.substring(0, value.length - 1) + "-"
             );
         },
-        X() {
+        Times() {
             setResult((value) => !value || isEqualsCalculated ?
                 equation.replace(/\./g, '') + "×"
                 : value.substring(0, value.length - 1) + "×"
@@ -44,15 +55,15 @@ export function Calculator() {
             handleEquationChange(result.toLocaleString('pt-BR'));
             setIsEqualsCalculated((value) => !value);
         },
-        C() {
+        Clear() {
             setResult("");
             setEquation("0");
             setIsEqualsCalculated(false);
         },
-        CE() {
+        ClearEntry() {
             setEquation("0");
         },
-        PlusMinus() {
+        FlagSign() {
             setEquation(value => {
                 if (!value.includes("-") && value !== '0')
                     return "-" + value;
@@ -152,13 +163,11 @@ export function Calculator() {
         return equationText;
     }
 
-    function handleClickButton(event: MouseEvent<HTMLButtonElement>) {
-        let data = event.currentTarget.innerHTML.replace(/<img src="\/src\/assets\/|.png" alt=".*">/g, '');
-        const regExp = new RegExp(/[\d,]/);
-        if (regExp.test(data) && equationRef.current) {
+    function handleClickButton(data: string, image = false) {
+        const operation = data as Operation;
+        if (!(operation in Operation) && equationRef.current) {
             handleEquationChange(equation + data);
         } else {
-            const operation = event.currentTarget.innerHTML.replace(/<img src="\/src\/assets\/|.png" alt=".*">/g, '') as Operation
             operations[operation]();
         }
     }
@@ -181,7 +190,7 @@ export function Calculator() {
                             return (
                                 <li key={button.description}>
                                     <Button className={"case" + button.hotkey} ref={(element: HTMLButtonElement) => buttonsRef.current.push(element)}
-                                        variant={button.type} onClick={handleClickButton}>
+                                        variant={button.type} onClick={() => handleClickButton(button.value, button.image)}>
                                         {button.image ? <img src={button.operator} alt={button.description} /> : button.operator}
                                     </Button>
                                 </li>
