@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="" title="#DesignSystemLogo" src="../../../../.github/logo.svg" width="200px" />
+    <img alt="" title="#DesignSystemLogo" src="../../../../.github/calculadora.svg" width="200px" />
 </h1>
 
 <h4 align="center"> 
