@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "keen-slider": "^6.8.5",
+    "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.0",

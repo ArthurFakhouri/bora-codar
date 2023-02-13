@@ -22,4 +22,9 @@ export const GlobalStyles = createGlobalStyle`
             font-size: 62.5%;
         }
     }
+
+    h2 {
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
 `
